@@ -1,5 +1,5 @@
 import * as express from "express";
-import {fetchSynopticData} from "../fetching";
+import {fetchHydroData, fetchSynopticData} from "../utils/fetching";
 
 export const data = express.Router();
 
@@ -7,8 +7,9 @@ interface Params {
     voivodeship: string;
 }
 
-data.get("/:voivodeship", (req, res) => {
+data.get("/:voivodeship", async (req, res) => {
     const { voivodeship }:Params = req.params;
-    const synopticData = fetchSynopticData(voivodeship.toLowerCase());
-    res.json()
+    const synopticData = await fetchSynopticData(voivodeship.toLowerCase());
+    const hydroData = await fetchHydroData(voivodeship.toLowerCase());
+    res.json({synopticData, hydroData})
 })
