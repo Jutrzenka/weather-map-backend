@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.use("/data", data)
 app.get("/*", (req,res) => {
-    res.status(510);
+    res.status(404);
     res.json({error: true})
 })
 
