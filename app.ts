@@ -1,4 +1,5 @@
 import * as express from "express";
+import { config } from "./config";
 import {data} from "./routes/data";
 
 const app = express()
@@ -7,9 +8,10 @@ app.use(express.json());
 
 app.use("/data", data)
 app.get("/*", (req,res) => {
-    res.json("error")
+    res.status(510);
+    res.json({error: true})
 })
 
-app.listen(3000, "localhost", () => {
-    console.log("Server listen!")
+app.listen(config.port, config.host, () => {
+    console.log(`Server listen to: http://${config.host}:${config.port}`);
 })

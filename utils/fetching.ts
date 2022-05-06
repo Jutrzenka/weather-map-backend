@@ -1,5 +1,7 @@
 import {VoivodeshipKeys} from "./VoivodeshipKeys";
 
+// Fetch synoptic data
+
 const filterCity = (value: any, voivodeshipKeys:VoivodeshipKeys) => {
     return voivodeshipKeys.city.includes(value["stacja"]);
 }
@@ -25,6 +27,8 @@ export const fetchSynopticData = async (voivodeshipKeys:VoivodeshipKeys) => {
             } as SynopticData;
         })
 }
+
+// Fetch hydro data
 
 interface HydroData {
     city: string;
