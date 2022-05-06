@@ -1,15 +1,23 @@
 import * as express from "express";
 import {fetchHydroData, fetchSynopticData} from "../utils/fetching";
+import {getVoivodeshipKeys} from "../utils/VoivodeshipKeys";
 
 export const data = express.Router();
 
 interface Params {
-    voivodeship: string;
+    voivodeshipName: string;
 }
 
-data.get("/:voivodeship", async (req, res) => {
-    const { voivodeship }:Params = req.params;
-    const synopticData = await fetchSynopticData({city:["Białystok"], voivodeship:voivodeship});
-    const hydroData = await fetchHydroData({city:["Białystok"], voivodeship:voivodeship});
-    res.json({synopticData, hydroData})
+data.get("/:voivodeshipName", async (req, res) => {
+    const { voivodeshipName }:Params = req.params;
+    const voivodeshipKey = getVoivodeshipKeys(voivodeshipName);
+    if (voivodeshipKey !== undefined) {
+        const synopticData = await fetchSynopticData(voivodeshipKey);
+        const hydroData = await fetchHydroData(voivodeshipKey);
+        res.status(200)
+        res.json({error: false, synopticData, hydroData})
+    } else {
+        res.status(404);
+        res.json({error: true})
+    }
 })

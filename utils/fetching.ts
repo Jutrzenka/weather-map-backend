@@ -1,7 +1,29 @@
 import {VoivodeshipKeys} from "./VoivodeshipKeys";
 
+const filterCity = (value: any, voivodeshipKeys:VoivodeshipKeys) => {
+    return voivodeshipKeys.city.includes(value["stacja"]);
+}
+
+interface SynopticData {
+    city: string;
+    temp: number;
+    windSpeed: number;
+    totalPrecipitation: number;
+    atmosphericPressure: number;
+}
+
 export const fetchSynopticData = async (voivodeshipKeys:VoivodeshipKeys) => {
-    return voivodeshipKeys;
+    const data = (await (await fetch("http://danepubliczne.imgw.pl/api/data/synop/")).json()) as [];
+    return data.filter(value => filterCity(value, voivodeshipKeys))
+        .map(value => {
+            return {
+                city: value["stacja"],
+                temp: value["temperatura"],
+                windSpeed: value["predkosc_wiatru"],
+                totalPrecipitation: value["suma_opadu"],
+                atmosphericPressure: value["cisnienie"],
+            } as SynopticData;
+        })
 }
 
 interface HydroData {
