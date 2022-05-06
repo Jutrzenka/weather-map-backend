@@ -1,11 +1,14 @@
 import * as express from "express";
+import {fetchSynopticData} from "../fetching";
 
 export const data = express.Router();
 
-data.get("/synoptic/:voivodeship", (req, res) => {
-    res.json(req.params)
-})
+interface Params {
+    voivodeship: string;
+}
 
-data.get("/hydrological/:voivodeship", (req, res) => {
-    res.json(req.params)
+data.get("/:voivodeship", (req, res) => {
+    const { voivodeship }:Params = req.params;
+    const synopticData = fetchSynopticData(voivodeship.toLowerCase());
+    res.json()
 })
