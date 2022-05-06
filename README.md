@@ -1,5 +1,5 @@
-# Data format application from "https://danepubliczne.imgw.pl".
-
+# Data format application from https://danepubliczne.imgw.pl
+# Live Version: https://weather-app-backend-kacper.herokuapp.com/data/
 ## Endpoints:
 - doln -> województwo Dolnośląskie
 - kuja -> województwo Kujawsko-Pomorskie
