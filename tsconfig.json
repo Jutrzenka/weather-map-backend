@@ -10,6 +10,12 @@
     "lib": ["es6"],
     "outDir": "dist",
     "moduleResolution": "Node",
-    "esModuleInterop": true,
-  }
+    "esModuleInterop": true
+  },
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "./out.d.ts"
+  ]
 }
