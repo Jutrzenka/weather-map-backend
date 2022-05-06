@@ -9,7 +9,7 @@ interface Params {
 
 data.get("/:voivodeship", async (req, res) => {
     const { voivodeship }:Params = req.params;
-    const synopticData = await fetchSynopticData(voivodeship.toLowerCase());
-    const hydroData = await fetchHydroData(voivodeship.toLowerCase());
+    const synopticData = await fetchSynopticData({city:["Białystok"], voivodeship:voivodeship});
+    const hydroData = await fetchHydroData({city:["Białystok"], voivodeship:voivodeship});
     res.json({synopticData, hydroData})
 })

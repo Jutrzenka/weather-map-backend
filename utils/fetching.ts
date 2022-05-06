@@ -1,16 +1,27 @@
-export const fetchSynopticData = async (voivodeship:string) => {
-    return voivodeship;
+import {VoivodeshipKeys} from "./VoivodeshipKeys";
+
+export const fetchSynopticData = async (voivodeshipKeys:VoivodeshipKeys) => {
+    return voivodeshipKeys;
 }
 
-export const fetchHydroData = async (voivodeship:string) => {
+interface HydroData {
+    city: string;
+    river: string;
+    waterHeight: number;
+}
+
+const filterVoivodeship = (value: any, voivodeshipKeys:VoivodeshipKeys) => {
+    return value["województwo"] === voivodeshipKeys.voivodeship;
+}
+
+export const fetchHydroData = async (voivodeshipKeys:VoivodeshipKeys):Promise<HydroData[]> => {
     const data = (await (await fetch("http://danepubliczne.imgw.pl/api/data/hydro/")).json()) as [];
-    return data.filter(value => {
-        if (value["województwo"] === voivodeship) return value
-    }).map(value => {
-        return {
-            city: value["stacja"],
+    return data.filter(value => filterVoivodeship(value, voivodeshipKeys))
+        .map(value => {
+            return {
+                city: value["stacja"],
                 river: value["rzeka"],
-            waterHeight: value["stan_wody"],
-        };
+                waterHeight: value["stan_wody"],
+            } as HydroData;
     })
 }
