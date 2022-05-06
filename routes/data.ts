@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 import { sendResponse } from "../utils/sendResponse";
 import {getVoivodeshipKeys} from "../utils/VoivodeshipKeys";
 

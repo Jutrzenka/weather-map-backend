@@ -1,5 +1,5 @@
 import {VoivodeshipKeys} from "./VoivodeshipKeys";
-import * as express from "express";
+import express from "express";
 import {fetchHydroData, fetchSynopticData} from "./fetching";
 
 export const sendResponse = async (voivodeshipKey:VoivodeshipKeys | undefined, res:express.Response) => {

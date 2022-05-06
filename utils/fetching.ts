@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 import {VoivodeshipKeys} from "./VoivodeshipKeys";
 
 // Fetch synoptic data
