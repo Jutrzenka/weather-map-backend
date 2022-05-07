@@ -14,5 +14,4 @@ const getEnv = (data:string) => {
 
 export const config = {
     port: Number(getEnv("PORT")),
-    host: getEnv("HOST"),
 }

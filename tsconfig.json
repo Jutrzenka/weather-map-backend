@@ -5,11 +5,17 @@
     "strict": true,
     "strictPropertyInitialization": true,
     "sourceMap": true,
-    "target": "es6",
+    "target": "es3",
     "downlevelIteration": true,
-    "module": "ES6",
     "lib": ["es6"],
     "outDir": "dist",
+    "moduleResolution": "Node",
     "esModuleInterop": true
-  }
+  },
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "./out.d.ts"
+  ]
 }
