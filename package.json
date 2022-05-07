@@ -1,6 +1,6 @@
 {
   "name": "polish-weather-map-backend",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Weather map backend",
   "main": "app.ts",
   "type": "commonjs",

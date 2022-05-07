@@ -3,6 +3,7 @@ import {config, } from "./config";
 import {data, } from "./routes/data";
 import cors from 'cors';
 
+
 const app = express()
 
 const allowedOrigins = ['http://localhost:3000'];
