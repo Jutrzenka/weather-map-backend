@@ -9,22 +9,22 @@ const filterCity = (value: any, voivodeshipKeys:VoivodeshipKeys) => {
 
 interface SynopticData {
     city: string;
-    temp: number;
-    windSpeed: number;
-    totalPrecipitation: number;
-    atmosphericPressure: number;
+    temp: string;
+    relativeHumidity: string;
+    totalPrecipitation: string;
+    atmosphericPressure: string;
 }
 
-export const fetchSynopticData = async (voivodeshipKeys:VoivodeshipKeys) => {
+export const fetchSynopticData = async (voivodeshipKeys:VoivodeshipKeys): Promise<SynopticData[]> => {
     const data = (await (await fetch("http://danepubliczne.imgw.pl/api/data/synop/")).json()) as [];
     return data.filter(value => filterCity(value, voivodeshipKeys))
         .map(value => {
             return {
-                city: value["stacja"],
-                temp: value["temperatura"],
-                windSpeed: value["predkosc_wiatru"],
-                totalPrecipitation: value["suma_opadu"],
-                atmosphericPressure: value["cisnienie"],
+                city: value["stacja"] !== null ? `${value["stacja"]}` : "BRAK DANYCH",
+                temp: value["temperatura"] !== null ? `${value["temperatura"]}°C` : "BRAK DANYCH",
+                relativeHumidity: value["wilgotnosc_wzgledna"] !== null ? `${value["wilgotnosc_wzgledna"]}%` : "BRAK DANYCH",
+                totalPrecipitation: value["suma_opadu"] !== null ? `${value["suma_opadu"]} l/m2` : "BRAK DANYCH",
+                atmosphericPressure: value["cisnienie"] !== null ? `${value["cisnienie"]}hPa` : "BRAK DANYCH",
             } as SynopticData;
         })
 }
@@ -34,7 +34,7 @@ export const fetchSynopticData = async (voivodeshipKeys:VoivodeshipKeys) => {
 interface HydroData {
     city: string;
     river: string;
-    waterHeight: number;
+    waterHeight: string;
 }
 
 const filterVoivodeship = (value: any, voivodeshipKeys:VoivodeshipKeys) => {
@@ -48,7 +48,7 @@ export const fetchHydroData = async (voivodeshipKeys:VoivodeshipKeys):Promise<Hy
             return {
                 city: value["stacja"],
                 river: value["rzeka"],
-                waterHeight: value["stan_wody"],
+                waterHeight: value["stan_wody"] !== null ? `${value["stan_wody"]}m` : "BRAK DANYCH",
             } as HydroData;
     })
 }
