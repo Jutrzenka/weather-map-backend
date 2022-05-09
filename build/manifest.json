@@ -1,0 +1,13 @@
+{
+  "short_name": "Pogodynka",
+  "name": "Aplikacja pogodowa dla polskich województw",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone"
+}
