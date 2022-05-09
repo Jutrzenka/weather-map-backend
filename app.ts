@@ -13,8 +13,11 @@ const options: cors.CorsOptions = {
 
 app.use(cors(options));
 app.use(express.json());
+express.static('build');
 
-app.use("/data", data)
+app.use('/', express.static('build'));
+app.use("/data", data);
+
 app.get("/*", (req,res) => {
     res.status(404);
     res.json({error: true})
