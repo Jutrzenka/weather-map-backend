@@ -34,5 +34,5 @@ http://localhost:3000/data/zach
 ### "synopticData":[ city:string, temp:number, windSpeed:number, "totalPrecipitation":number, "atmosphericPressure": number]
 ### "hydroData": ["city": string,"river": string, "waterHeight": number]
 
-![image](https://user-images.githubusercontent.com/93550588/168377358-8321b36f-a07d-4a4c-b6f8-7f8a2e90fce5.png)
+![image](https://user-images.githubusercontent.com/93550588/168377540-2214bf14-e666-446f-8d61-7569456ff663.png)
 
