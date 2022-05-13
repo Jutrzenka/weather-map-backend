@@ -1,5 +1,5 @@
 # Data format application from https://danepubliczne.imgw.pl
-# Live Version: https://weather-app-backend-kacper.herokuapp.com/data/mazo
+# Live Version: https://weather-app-kacper.herokuapp.com/data/podl
 ## Endpoints:
 - doln -> województwo Dolnośląskie
 - kuja -> województwo Kujawsko-Pomorskie
@@ -33,3 +33,6 @@ http://localhost:3000/data/zach
 ### "error":boolean;
 ### "synopticData":[ city:string, temp:number, windSpeed:number, "totalPrecipitation":number, "atmosphericPressure": number]
 ### "hydroData": ["city": string,"river": string, "waterHeight": number]
+
+![image](https://user-images.githubusercontent.com/93550588/168377358-8321b36f-a07d-4a4c-b6f8-7f8a2e90fce5.png)
+
